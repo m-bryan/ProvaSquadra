@@ -58,6 +58,18 @@ class Dashboard extends Component {
     this.props.getSistemas();
   }
 
+  CellFormatter(cell, row) {
+    return (
+        <div>
+            <a className="btn-editar" size="small" href={"/produto/update/" + cell} aria-label="add">
+                Alterar
+            </a>
+            <a className="btn-excluir" size="small" href={"/produto/" + cell} aria-label="add">
+                Excluir
+            </a>
+        </div>);
+}
+
   render() {
     const { errors } = this.state;
     const { sistemas } = this.props.sistema;
@@ -146,12 +158,13 @@ class Dashboard extends Component {
                 columns={sistemas}
 
               >
-                <TableHeaderColumn keyField="id" dataField='id'>Id</TableHeaderColumn>
+                <TableHeaderColumn keyField='id' dataField='id'>Id</TableHeaderColumn>
                 <TableHeaderColumn dataField='descricao'>Descricao</TableHeaderColumn>
                 <TableHeaderColumn dataField='sigla'>Sigla</TableHeaderColumn>
                 <TableHeaderColumn dataField='email'>E-mail</TableHeaderColumn>
                 <TableHeaderColumn dataField='email'>URL</TableHeaderColumn>
                 <TableHeaderColumn dataField='status'>Status</TableHeaderColumn>
+                <TableHeaderColumn dataField='id' dataFormat = {this.CellFormatter} >Ações</TableHeaderColumn>
               </BootstrapTable>
 
 
